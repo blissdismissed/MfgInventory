@@ -52,6 +52,7 @@ async function signup(req, res, next) {
         res.redirect("/signup");
       }
     );
+    console.log('here I am');
     return;
   }
 
