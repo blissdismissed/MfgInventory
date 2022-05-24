@@ -1,11 +1,11 @@
-<form action="<%= submitPath %>_csrf=<%= locals.csrfToken %>" method='POST' enctype="multipart/form-data">
+<form action="<%= submitPath %>?_csrf=<%= locals.csrfToken %>" method='POST' enctype="multipart/form-data">
   <p>
     <label for="title">Title</label>
     <input type="text" id="title" name="title" value="<%= product.title %>" required>
   </p>
   <p>
     <label for="image">Image</label>
-    <input type="file" id="image" name="image" accept="image/png, image/jpg">
+    <input type="file" id="image" name="image" accept="image/png, image/jpg" <% if(imageRequired) { %>required<% } %>>
   </p>
   <p>
     <label for="summary">Summary</label>
