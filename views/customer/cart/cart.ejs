@@ -15,7 +15,14 @@
       </ul>
     <div id="cart-total">
       <p>Total: $ <span id="cart-total-price"><%= locals.cart.totalPrice.toFixed(2) %></span></p>
-      <button class="btn">Purchase</button>
+      <% if (locals.isAuth) { %> 
+        <form action="/orders" method="POST">
+          <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+          <button class="btn">Purchase</button>
+        </form>
+      <% } else { %>
+        <p id="cart-total-fallback">Login to proceed and purchase the items in your cart.</p>
+      <% } %>
     </div>
   </main>
 <%- include('../../shared/includes/footer') %>
