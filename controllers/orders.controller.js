@@ -25,11 +25,13 @@ async function addOrder(req, res, next) {
     return;
   }
 
+  req.session.cart = null;
+
   res.redirect('/orders');
 
 }
 
 module.exports = {
   addOrder: addOrder,
-  getOrders: getOrders
+  getOrders: getOrders,
 }
