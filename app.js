@@ -10,6 +10,7 @@ const addCsrfTokenMiddleware = require('./middlewares/csrf-token');
 const errorHandlingMIddleware = require('./middlewares/error-handler');
 const checkAuthStatusMiddleware = require('./middlewares/check-auth');
 const protectRoutesMiddleware = require('./middlewares/protect-routes');
+const updateCartPricesMiddleware = require('./middlewares/update-cart-prices');
 const cartMiddleware = require('./middlewares/cart');
 const authRoutes = require("./routes/auth.routes");
 const productsRoutes =require('./routes/products.routes');

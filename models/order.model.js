@@ -1,4 +1,5 @@
 const db = require("../data/database");
+const mongodb = require('mongodb'); 
 
 class Order {
   // Status => pending, fulfilled, cancelled
@@ -20,13 +21,13 @@ class Order {
   }
 
   static transformOrderDocument(orderDoc) {
-    return new Order {
+    return new Order(
       orderDoc.productData,
       orderDoc.userData,
       orderDoc.status,
       orderDoc.date,
       orderDoc._id,
-    };
+    );
   }
 
   static transformOrderDocuments(orderDocs) {
@@ -36,7 +37,10 @@ class Order {
   save() {
     if (this.id) {
       // Updating
+      const orderId = new mongodb.ObjectId(this.id);
+      return db.getDb().collection('orders').updateOne({ _id: orderId}, { $set: { status: this.status } });
     } else {
+      // New orders
       const orderDocument = {
         userData: this.userData,
         productData: this.productData,
@@ -56,13 +60,14 @@ class Order {
       .getDb()
       .collection("orders")
       .find()
+      .sort({ _id: -1 })
       .toArray();
 
     return this.transformOrderDocuments(orders);
   }
 
   static async findAllForUser(userId) {
-    const uid = new monogodb.ObjectId(userId);
+    const uid = new mongodb.ObjectId(userId);
 
     const orders = await db
       .getDb()
