@@ -16,11 +16,13 @@ async function addOrder(req, res, next) {
   let userDocument;
   try {
   userDocument = await User.findById(res.locals.uid);
+  console.log("userDocument in addOrder: ", userDocument);
   } catch(error) {
-    next(error);
+    return next(error);
   }
 
   const order = new Order(cart, userDocument);
+  console.log("order: ", order);
 
   try {
     await order.save();

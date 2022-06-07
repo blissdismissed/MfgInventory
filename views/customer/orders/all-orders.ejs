@@ -5,7 +5,7 @@
   <%- include('../../shared/includes/header') %>
   <main>
     <h1>All Your Orders</h1>
-    <%- include('../../shared/includes/order-list', { orders: orders}) %>
+    <%- include('../../shared/includes/order-list') %>
+    <% console.log("orders: ", orders); %>
   </main>
 <%- include('../../shared/includes/footer') %>
-
