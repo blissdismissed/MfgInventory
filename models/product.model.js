@@ -48,6 +48,14 @@ class Product {
     });
   }
 
+  static async findMultiple(ids) {
+    const productIds = ids.map(id => new mongodb.ObjectId(id));
+
+    const products = await db.getDb().collection('products').find({ _id: { $in: productIds} }).toArray(); //specify that the product id is in the array of productIds
+    
+    return products.map( productDocument => new Product(productDocument));
+  }
+
   updateImageData() {
     this.imagePath = `product-data/images/${this.image}`;
     this.imageUrl = `/products/assets/images/${this.image}`;
