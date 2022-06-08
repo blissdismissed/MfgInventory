@@ -9,8 +9,8 @@ class Order {
     this.userData = userData;
     this.status = status;
     this.date = new Date(date);
-    console.log("date: ", date);
-    console.log("this.date: ", this.date);
+    // console.log("date: ", date);
+    // console.log("this.date: ", this.date);
     if (this.date) {
       this.formattedDate = this.date.toLocaleDateString('en-US', {
         weekday: 'short',
