@@ -10,6 +10,7 @@ const addCsrfTokenMiddleware = require('./middlewares/csrf-token');
 const errorHandlingMiddleware = require('./middlewares/error-handler');
 const checkAuthStatusMiddleware = require('./middlewares/check-auth');
 const protectRoutesMiddleware = require('./middlewares/protect-routes');
+const protectAdminRoutesMiddleware = require('./middlewares/protect-admin-routes');
 const updateCartPricesMiddleware = require('./middlewares/update-cart-prices');
 const notFoundMiddleware = require('./middlewares/not-found');
 const cartMiddleware = require('./middlewares/cart');
@@ -45,8 +46,8 @@ app.use(baseRoutes);
 app.use(authRoutes);
 app.use(productsRoutes);
 app.use('/cart', cartRoutes);
-app.use('/orders', protectRoutesMiddleware, ordersRoutes);
-app.use('/admin', protectRoutesMiddleware, adminRoutes);
+app.use('/orders', protectRoutesMiddleware, ordersRoutes); // need to see how to implement protect routes here
+app.use('/admin', protectAdminRoutesMiddleware, adminRoutes);
 
 app.use(notFoundMiddleware);
 
